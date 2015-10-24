@@ -36,3 +36,5 @@ tracker
 useraccounts:flow-routing
 useraccounts:bootstrap
 accounts-twitter
+markdown
+timdown:rangy

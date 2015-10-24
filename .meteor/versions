@@ -49,6 +49,7 @@ kadira:flow-router@2.6.2
 livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
+markdown@1.0.5
 meteor@1.1.9
 meteor-base@1.0.1
 meteorhacks:async@1.0.0
@@ -89,6 +90,7 @@ templating@1.1.4
 templating-tools@1.0.0
 themeteorchef:bert@1.1.0
 themeteorchef:jquery-validation@1.14.0
+timdown:rangy@1.2.3
 tracker@1.0.9
 twbs:bootstrap@3.3.5
 twitter@1.1.5
