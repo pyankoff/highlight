@@ -1,0 +1,11 @@
+<template name="essayPage">
+  {{#if Template.subscriptionsReady}}
+    <div class="essay">
+      {{#with essay}}
+        {{{annotatedHtml}}}
+      {{/with}}
+    </div>
+
+    {{> addPoint}}
+  {{/if}}
+</template>

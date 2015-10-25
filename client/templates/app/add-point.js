@@ -22,13 +22,11 @@ Template.addPoint.onRendered(() => {
 Template.addPoint.events({
   "click .save-point": function(e){
     var data = {
-      essayId: Essays.findOne({})._id,
+      essayId: FlowRouter.getParam('id'),
       htmlString: $('.essay').html(),
       pointId: Session.get('pointId'),
       tags: $('#tagSelect')[0].selectize.items
     };
-
-    console.log($('#tagSelect')[0].selectize.items);
 
     Meteor.call("savePoint", data);
 

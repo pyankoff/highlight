@@ -1,11 +1,7 @@
 <template name="index">
   {{#if Template.subscriptionsReady}}
-    <div class="essay">
-      {{#with essay}}
-        {{{text}}}
-      {{/with}}
-    </div>
-
-    {{> addPoint}}
+    {{#each essays}}
+      {{> essayItem}}
+    {{/each}}
   {{/if}}
 </template>
