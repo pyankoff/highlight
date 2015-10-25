@@ -7,9 +7,15 @@ Template.index.helpers({
 Template.index.events({
   "mouseup .essay": (e) => {
     var text = rangy.getSelection().toString();
-    var essayId = Essays.findOne({})._id;
+    var popover = $('.add-point');
+    popover.hide();
 
     if (text.length > 0) {
+      popover.css({ top: e.pageY, left: e.pageX });
+      popover.show();
+
+      var essayId = Essays.findOne({})._id;
+
       var point = {
         text: text,
         source: essayId
@@ -22,10 +28,7 @@ Template.index.events({
         if(result){
           highlighter.classAppliers.highlight.elementProperties.href = "/point/"+result;
           highlighter.highlightSelection("highlight");
-
-          var text = e.currentTarget.innerHTML.toString();
-          console.log(essayId, text);
-          Meteor.call("updateEssay", essayId, text);
+          Session.set('pointId', result);
         }
       });
     }

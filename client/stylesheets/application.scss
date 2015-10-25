@@ -7,3 +7,22 @@
 .highlight {
   background-color: #eee;
 }
+
+.add-point {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  & > .container {
+    height: 100%;
+  }
+  & > .selectize-control {
+    margin: 10px;
+  }
+}
+
+
+.save-point {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
