@@ -1,6 +1,7 @@
 _newPoint = function(point) {
   _.extend(point, {
-    targets: []
+    targets: [],
+    favCount: 0
   });
   var id = Points.insert(point);
   return id;
@@ -39,5 +40,13 @@ Meteor.methods({
     }});
 
     return id;
+  },
+  savePoint: (data) => {
+    Essays.update({_id: data.essayId}, {$set:{
+      annotatedHtml: data.htmlString
+    }});
+    Points.update({_id: data.pointId}, {$set:{
+      tags: data.tags
+    }});
   }
 });

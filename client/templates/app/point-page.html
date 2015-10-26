@@ -2,21 +2,10 @@
   {{#if Template.subscriptionsReady}}
     <div class="container point-list">
       {{#with point}}
-        {{text}}
+        {{> pointItem}}
 
-        <!-- {{#each tags}}
-          <button type="button" class="btn btn-default">
-            {{this}}
-          </button>
-        {{/each}} -->
-        <br>
-        <br>
         {{#each related}}
-          <p>
-            <a href="{{url}}">{{text}}</a>
-            {{weight}}
-          </p>
-          <br>
+          {{> pointItem}}
         {{/each}}
 
       {{/with}}

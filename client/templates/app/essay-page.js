@@ -6,7 +6,7 @@ Template.essayPage.helpers({
 });
 
 Template.essayPage.events({
-  "mouseup .essay": (e) => {
+  "mouseup .essay": function(e, tmp) {
     var text = rangy.getSelection().toString();
     var popover = $('.add-point');
 
@@ -17,12 +17,14 @@ Template.essayPage.events({
       popover.css({ top: e.pageY, left: e.pageX });
       popover.show();
 
-      var essayId = FlowRouter.getParam('id');
+      var essayId = this._id;
+          author = this.author;
 
       var point = {
         text: text,
-        source: essayId
-      }
+        source: essayId,
+        author: author
+      };
 
       Meteor.call("newPoint", point, function(error, result){
         if(error){

@@ -2,8 +2,8 @@ Template.index.helpers({
   essays: () => {
     return Essays.find();
   },
-  essayLink: () => {
-    return FlowRouter.path('essay', {id: this._id});
+  essayLink: (id) => {
+    return FlowRouter.path('essay', {id: id});
   }
 });
 

@@ -15,5 +15,15 @@ Meteor.methods({
          targets: targets
        }});
      })
+  },
+  copyAuthors: function () {
+    Points.find().forEach((point) => {
+      var essay = Essays.findOne(point.source);
+
+      Points.update({_id: point._id}, {$set:{
+        author: essay.author
+      }});
+    });
+
   }
 });

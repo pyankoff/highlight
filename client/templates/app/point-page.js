@@ -16,7 +16,6 @@ Template.pointPage.helpers({
 
     related = Points.find({"_id": {$in: _.keys(related)}}).map((point) => {
       point.weight = related[point._id];
-      point.url = FlowRouter.path('point', {id: point._id});
       return point;
     });
 
