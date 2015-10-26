@@ -1,14 +1,36 @@
 <template name="pointPage">
   {{#if Template.subscriptionsReady}}
-    {{#with point}}
-      {{text}}
+    <div class="container point-list">
+      {{#with point}}
+        {{text}}
 
-      {{#each tags}}
-        <button type="button" class="btn btn-default">
-          {{this}}
-        </button>
-      {{/each}}
-    {{/with}}
+        <!-- {{#each tags}}
+          <button type="button" class="btn btn-default">
+            {{this}}
+          </button>
+        {{/each}} -->
+        <br>
+        <br>
+        {{#each related}}
+          <p>
+            <a href="{{url}}">{{text}}</a>
+            {{weight}}
+          </p>
+          <br>
+        {{/each}}
+
+      {{/with}}
+    </div>
+
+    <form class="point-input panel-footer">
+      <div class="input-group">
+        <input name="text" type="text" class="form-control" placeholder="Type your message here..." />
+        <span class="input-group-btn">
+          <button class="btn btn-success submit-point">
+              Send</button>
+        </span>
+      </div>
+    </form>
 
   {{/if}}
 </template>

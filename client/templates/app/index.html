@@ -1,7 +1,9 @@
 <template name="index">
   {{#if Template.subscriptionsReady}}
+  <div class="container">
     {{#each essays}}
       {{> essayItem}}
     {{/each}}
+  </div>
   {{/if}}
 </template>

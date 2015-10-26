@@ -4,6 +4,10 @@
 
 @import "components/login";
 
+body {
+  font-size: 18px;
+}
+
 .highlight {
   background-color: #eee;
 }
@@ -25,4 +29,13 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
+}
+
+.point-list {
+  padding-bottom: 30px;
+}
+
+.point-input {
+  position: fixed;
+  bottom: 0px;
 }
