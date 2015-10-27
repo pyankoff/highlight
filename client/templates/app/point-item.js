@@ -6,7 +6,7 @@ Template.pointItem.helpers({
     return FlowRouter.path('author', {id: this.author});
   },
   essayUrl: function () {
-    return FlowRouter.path('essay', {id: this.source});
+    return FlowRouter.path('essay', {id: this.source}, {point: this._id});
   },
   upvoted: function () {
     return _.contains(Meteor.user().profile.upvotes, this._id) ? "upvoted" : "";
@@ -17,7 +17,17 @@ Template.pointItem.helpers({
 });
 
 Template.pointItem.events({
-  "click .fa-star": function(e, template){
+  "click .fa-star": function(e){
      Meteor.call("favorite", this._id);
+  },
+  "click .fa-reply": function(e){
+    $('.point-input input').val('@' + this.author + ' ');
+    $('.point-input input').focus();
+  },
+  "click .point-item": function(e){
+    if (!$(e.target).hasClass('fa')) {
+      e.stopImmediatePropagation();
+      FlowRouter.go('point', {id: this._id});
+    }
   }
 });

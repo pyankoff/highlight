@@ -52,6 +52,15 @@ Template.essayPage.onRendered(function() {
       }
   });
   highlighter.addClassApplier(classApplier);
+
+  var fromPoint = FlowRouter.getQueryParam('point');
+  if (fromPoint) {
+    var place = 'a[href="'+FlowRouter.path('point', {id: fromPoint})+'"]';
+    Meteor.setTimeout(function(){
+      $.scrollTo(place, 300, {offset:-50});
+      $(place).delay(300).effect("highlight", {}, 2000);
+    }, 300);
+  }
 });
 
 Template.essayPage.onCreated(function() {

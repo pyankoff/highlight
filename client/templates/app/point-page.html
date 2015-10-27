@@ -2,10 +2,15 @@
   {{#if Template.subscriptionsReady}}
     <div class="container point-list">
       {{#with point}}
-        {{> pointItem}}
+        <div class="main-point">
+          {{> pointItem}}
+        </div>
+
 
         {{#each related}}
-          {{> pointItem}}
+          <div class="related-point">
+            {{> pointItem}}
+          </div>
         {{/each}}
 
       {{/with}}

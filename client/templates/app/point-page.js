@@ -40,8 +40,8 @@ Template.pointPage.events({
         var place = 'a[href="'+FlowRouter.path('point', {id: result})+'"]'
 
         Meteor.setTimeout(function(){
-          $.scrollTo(place, 300, {offset:-100});
-          $(place).delay(400).effect("highlight", {}, 2000);
+          $.scrollTo(place, 300, {offset: -50});
+          $(place).delay(300).effect("highlight", {}, 2000);
         }, 0);
 
       }

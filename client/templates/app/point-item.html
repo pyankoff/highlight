@@ -1,21 +1,16 @@
 <template name="pointItem">
-  <div class="row">
-    {{#if weight}}
-      <a href="{{pointUrl}}">{{text}}</a>
-    {{else}}
-      {{text}}
-    {{/if}}
-  </div>
+  <div class="container point-item">
+    <div class="row">
+      <p>{{text}}</p>
+    </div>
 
-  <div class="row action-list">
-    <i class="fa fa-star {{upvoted}}">
-      <span class="count">{{favCountDisplay}}</span>
-    </i>
-    <i class="fa fa-reply"></i>
-    <a href="{{essayUrl}}"><i class="fa fa-file-text-o"></i></a>
-    <span class="fa">{{author}}</span>
+    <div class="row action-list">
+      <i class="fa fa-star {{upvoted}}">
+        <span class="count">{{favCountDisplay}}</span>
+      </i>
+      <i class="fa fa-reply"></i>
+      <a href="{{essayUrl}}"><i class="fa fa-file-text-o"></i></a>
+      <span class="fa">{{author}}</span>
+    </div>
   </div>
-
-  <br>
-  <br>
 </template>
