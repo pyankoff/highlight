@@ -17,6 +17,14 @@ a {
 
 .highlight {
   background-color: #eee;
+  text-decoration: none;
+  color: black;
+  padding: 5px 0;
+  margin: -5px 0;
+  &:hover {
+    color: black;
+    background-color: #ddd;
+  }
 }
 
 .add-point {

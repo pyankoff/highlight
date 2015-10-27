@@ -3,7 +3,7 @@
 
       {{#with essay}}
         <div class="container essay">
-          {{{annotatedHtml}}}
+          {{#markdown}}{{annotatedText}}{{/markdown}}
         </div>
       {{/with}}
 

@@ -4,10 +4,10 @@ Meteor.methods({
        var targets = [];
        Points.find().forEach((p2) => {
          if (p1._id != p2._id &&
-           _.intersection(p1.tags, p2.tags).length > 0) {
+           _.intersection(p1.clusters, p2.clusters).length > 0) {
            targets.push({
              id: p2._id,
-             weight: _.intersection(p1.tags, p2.tags).length
+             weight: _.intersection(p1.clusters, p2.clusters).length
            });
          };
        });

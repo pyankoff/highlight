@@ -46,7 +46,7 @@ Meteor.methods({
       annotatedHtml: data.htmlString
     }});
     Points.update({_id: data.pointId}, {$set:{
-      tags: data.tags
+      clusters: data.clusters
     }});
   }
 });
