@@ -1,9 +1,11 @@
 <template name="essayPage">
   {{#if Template.subscriptionsReady}}
-
       {{#with essay}}
-        <div class="container essay">
-          {{#markdown}}{{annotatedText}}{{/markdown}}
+        <div class="container">
+          <h3>{{author}}</h3>
+          <div class="essay">
+            {{#markdown}}{{annotatedText}}{{/markdown}}
+          </div>
         </div>
       {{/with}}
 

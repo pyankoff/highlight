@@ -6,12 +6,9 @@
           {{> pointItem}}
         </div>
 
-
-        {{#each related}}
-          <div class="related-point">
-            {{> pointItem}}
-          </div>
-        {{/each}}
+        {{#with related}}
+          {{> pointList}}
+        {{/with}}
 
       {{/with}}
     </div>

@@ -55,7 +55,6 @@ Template.pointPage.events({
 Template.pointPage.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    FlowRouter.watchPathChange();
     self.subscribe('all');
   });
 });

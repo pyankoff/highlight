@@ -62,7 +62,7 @@ a {
 
 .main-point .point-item {
   & p {
-    font-size: 1.8em;
+    font-size: 1.4em;
   }
   border-bottom: 2px #ccc solid;
 }
@@ -87,7 +87,11 @@ a {
       margin-left: 10px;
     }
   }
-  & .fa.upvoted {
+  & .fa.owned {
     color: #fb3;
   }
+}
+
+.save-cluster {
+  margin-bottom: 30px;
 }

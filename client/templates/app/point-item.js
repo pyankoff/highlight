@@ -8,8 +8,8 @@ Template.pointItem.helpers({
   essayUrl: function () {
     return FlowRouter.path('essay', {id: this.source}, {point: this._id});
   },
-  upvoted: function () {
-    return _.contains(Meteor.user().profile.upvotes, this._id) ? "upvoted" : "";
+  owned: function () {
+    return _.contains(Meteor.user().profile.cart, this._id) ? "owned" : "";
   },
   favCountDisplay: function () {
     return this.favCount === 0 ? '' : this.favCount;
@@ -17,8 +17,8 @@ Template.pointItem.helpers({
 });
 
 Template.pointItem.events({
-  "click .fa-star": function(e){
-     Meteor.call("favorite", this._id);
+  "click .fa-cart-plus": function(e){
+     Meteor.call("addToCart", this._id);
   },
   "click .fa-reply": function(e){
     $('.point-input input').val('@' + this.author + ' ');
