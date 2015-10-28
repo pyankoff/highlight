@@ -1,7 +1,7 @@
 Template.addPoint.onRendered(() => {
   Tracker.autorun(function(){
     if (FlowRouter.subsReady()) {
-      clusters = Clusters.find().fetch();
+      clusters = Tags.find().fetch();
       $('#tagSelect').selectize({
         valueField: 'name',
         labelField: 'name',
@@ -9,7 +9,7 @@ Template.addPoint.onRendered(() => {
         options: [],
         options: clusters,
         create: function(input) {
-          Clusters.insert({name: input});
+          Tags.insert({name: input});
           return {
             name: input
           };

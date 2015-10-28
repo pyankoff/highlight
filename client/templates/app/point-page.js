@@ -7,19 +7,13 @@ Template.pointPage.helpers({
   },
   related: function () {
     var id = FlowRouter.getParam('id');
-    var targets = Points.findOne(id).targets;
 
     var related = [];
-    for (var i = 0; i < targets.length; i++) {
-      related[targets[i].id] = targets[i].weight;
-    }
-
-    related = Points.find({"_id": {$in: _.keys(related)}}).map((point) => {
-      point.weight = related[point._id];
-      return point;
+    Edges.find({points: id, author: Meteor.userId()}).forEach((edge) => {
+      related.push(_.without(edge.points, id)[0]);
     });
 
-    return _.sortBy(related, 'weight').reverse()
+    return Points.find({_id: {$in: related}});
   }
 });
 

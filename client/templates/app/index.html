@@ -1,13 +1,7 @@
 <template name="index">
   {{#if Template.subscriptionsReady}}
-  <div class="container">
-    {{#each essays}}
-      <div class="row">
-        <div class="col-xs-5">
-          <a href="{{essayLink _id}}">{{author}}</a>
-        </div>
-      </div>
-    {{/each}}
-  </div>
+    {{#with points}}
+      {{> pointList}}
+    {{/with}}
   {{/if}}
 </template>

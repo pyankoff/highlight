@@ -1,6 +1,7 @@
 <template name="default">
 	{{>bertAlert}}
 	{{>header}}
-
-	{{> Template.dynamic template=yield}}
+	<div class="container">
+	  {{> Template.dynamic template=yield}}
+	</div>
 </template>

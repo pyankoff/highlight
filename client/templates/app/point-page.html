@@ -1,6 +1,6 @@
 <template name="pointPage">
   {{#if Template.subscriptionsReady}}
-    <div class="container point-list">
+    <div class="point-list">
       {{#with point}}
         <div class="main-point">
           {{> pointItem}}
@@ -12,16 +12,6 @@
 
       {{/with}}
     </div>
-
-    <form class="point-input panel-footer">
-      <div class="input-group">
-        <input name="text" type="text" class="form-control" placeholder="Type your message here..." />
-        <span class="input-group-btn">
-          <button class="btn btn-success submit-point">
-              Send</button>
-        </span>
-      </div>
-    </form>
 
   {{/if}}
 </template>

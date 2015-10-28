@@ -52,12 +52,15 @@ a {
 
 .point-input {
   position: fixed;
+  left: 0px;
+  right: 0px;
   bottom: 0px;
 }
 
 .point-item {
   padding-top: 20px;
   border-bottom: 1px #ccc solid;
+  padding-bottom: 10px;
 }
 
 .main-point .point-item {
@@ -94,4 +97,12 @@ a {
 
 .save-cluster {
   margin-bottom: 30px;
+}
+
+#connectionsForm > button {
+    width: 100%;
+}
+
+.selectize-input > .item {
+  display: block;
 }

@@ -8,9 +8,22 @@
       <i class="fa fa-cart-plus {{owned}}">
         <span class="count">{{favCountDisplay}}</span>
       </i>
-      <i class="fa fa-reply"></i>
+      <i class="fa fa-link"></i>
+      <i class="fa fa-times"></i>
       <a href="{{essayUrl}}"><i class="fa fa-file-text-o"></i></a>
       <span class="fa">{{author}}</span>
     </div>
+
+    {{#if connectToThis}}
+      {{#autoForm collection="Points" id=this._id doc=this
+          type="method-update" meteormethod="addEdges"}}
+          <fieldset>
+          {{> afFieldInput name='_id' type="hidden" value=this._id}}
+          {{> afFieldInput name='tags' type="selectize"
+              multiple=true}}
+          </fieldset>
+          <button type="submit" class="btn btn-success pull-right">Save</button>
+      {{/autoForm}}
+    {{/if}}
   </div>
 </template>

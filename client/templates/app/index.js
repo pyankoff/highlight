@@ -1,9 +1,6 @@
 Template.index.helpers({
-  essays: () => {
-    return Essays.find();
-  },
-  essayLink: (id) => {
-    return FlowRouter.path('essay', {id: id});
+  points: function(){
+    return Points.find({_id: {$in: Meteor.user().profile.points}});
   }
 });
 

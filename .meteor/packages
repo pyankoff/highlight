@@ -17,7 +17,6 @@ standard-minifiers
 
 
 ecmascript
-digilord:faker
 kadira:flow-router
 kadira:blaze-layout
 meteorhacks:fast-render
@@ -28,14 +27,20 @@ fourseven:scss
 stevezhu:lodash
 reactive-var
 reactive-dict
-aldeed:collection2
 tracker
+
 useraccounts:flow-routing
 useraccounts:bootstrap
 accounts-twitter
+
 markdown
 sewdn:rangy
-jeremy:selectize
+
 tomwasd:flow-router-autoscroll
 natestrauser:jquery-scrollto
 linto:jquery-ui
+
+aldeed:collection2
+aldeed:autoform
+chhib:selectize-bootstrap-3
+comerc:autoform-selectize

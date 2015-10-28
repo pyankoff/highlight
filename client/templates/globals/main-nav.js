@@ -3,3 +3,10 @@ Template.mainNav.helpers({
     return Meteor.user().profile.cart.length;
   }
 });
+
+Template.mainNav.events({
+  "click .new-point": function(e){
+     FlowRouter.go('newPoint');
+     $(e.currentTarget).blur();
+  }
+});

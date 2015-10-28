@@ -1,0 +1,13 @@
+<template name="pointInput">
+  {{#if Template.subscriptionsReady}}
+    {{#autoForm collection="Points" id="newPointForm"
+        type="method" meteormethod="inputPoint"}}
+      <fieldset>
+        {{> afQuickField name='text' rows=3 label="New point"}}
+        {{> afQuickField name='tags' type="selectize"
+              multiple=true}}
+      </fieldset>
+      <button type="submit" class="btn btn-default pull-right">Add</button>
+    {{/autoForm}}
+  {{/if}}
+</template>
