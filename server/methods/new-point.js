@@ -42,7 +42,7 @@ Meteor.methods({
     return id;
   },
   savePoint: (data) => {
-    Essays.update({_id: data.essayId}, {$set:{
+    Lists.update({_id: data.essayId}, {$set:{
       annotatedHtml: data.htmlString
     }});
     Points.update({_id: data.pointId}, {$set:{

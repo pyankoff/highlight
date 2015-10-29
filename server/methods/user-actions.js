@@ -13,13 +13,29 @@ Meteor.methods({
        Points.update({_id: id}, {$inc: {favCount: -1}});
      }
   },
-  cartToCluster: function(cluster) {
-    var clusterId = Clusters.insert(cluster);
+  updateCart: function(cart) {
+    var userId = Meteor.userId();
+    Meteor.users.update({_id: userId}, {$set:{
+      "profile.cart": cart
+    }});
+  },
+  saveList: function(list) {
+    var points = [];
+    for (var i = 0; i < list.points.length; i++) {
+      points.push({
+        id: list.points[i]
+      });
+    }
+
+    list.points = points;
+    
+    var listId = Lists.insert(list);
+
     Meteor.users.update({_id: Meteor.userId()}, {
       $set: {"profile.cart": []},
-      $addToSet: {"profile.clusters": clusterId}
+      $addToSet: {"profile.lists": listId}
     });
 
-    return clusterId;
+    return listId;
   }
 });

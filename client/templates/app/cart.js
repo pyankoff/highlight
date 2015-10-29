@@ -1,33 +1,35 @@
 Template.cart.helpers({
   cartNotEmpty: function(){
-    return Meteor.user().profile.cart.length;
+    return Meteor.user().profile.cart.length != 0;
   },
   cartPoints: function(){
-    return Points.find({"_id": {$in: Meteor.user().profile.cart}});
+    var cart = Meteor.user().profile.cart;
+    return Points.find({"_id": {$in: cart}});
   }
 });
 
 Template.cart.events({
-  "submit .save-cluster": function(e){
+  "click .save-list": function(e){
     e.preventDefault();
 
-    var cluster = {
+    var list = {
       author: Meteor.userId(),
-      name: e.target.text.value,
-      points: Meteor.user().profile.cart
+      points: Session.get('ids')
     }
 
-    Meteor.call("cartToCluster", cluster, function(error, result){
+    Meteor.call("saveList", list, function(error, result){
       if(error){
         console.log("error", error);
       }
       if(result){
         Bert.alert({
-          title: 'Collection created',
+          title: 'New list created',
           type: 'success',
           style: 'growl-top-right',
           icon: 'fa-check'
         });
+
+        FlowRouter.go('list', {id: result});
       }
     });
 

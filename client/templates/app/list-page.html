@@ -1,0 +1,7 @@
+<template name="listPage">
+  {{#if Template.subscriptionsReady}}
+    {{#with listPoints}}
+      {{> pointList}}
+    {{/with}}
+  {{/if}}
+</template>

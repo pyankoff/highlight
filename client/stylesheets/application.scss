@@ -72,7 +72,6 @@ a {
 
 .related-point .point-item {
   &:hover {
-    background-color: #f9f7f3;
     cursor: pointer;
   }
 }
@@ -95,8 +94,10 @@ a {
   }
 }
 
-.save-cluster {
+.save-list {
+  margin-top: 10px;
   margin-bottom: 30px;
+  width: 100%;
 }
 
 #connectionsForm > button {

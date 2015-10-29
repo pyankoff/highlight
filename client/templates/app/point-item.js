@@ -40,7 +40,7 @@ Template.pointItem.events({
     if (!$(e.target).hasClass('fa') &&
         !$(e.target).hasClass('btn') &&
         !$(e.target).hasClass('selectize-input') &&
-        $(e.target).not('input')) {
+        !$(e.target).is('input')) {
 
       e.stopImmediatePropagation();
       Session.set('connectTo', undefined);

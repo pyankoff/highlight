@@ -1,5 +1,5 @@
 Meteor.publish("all", function(){
-  return [Essays.find(),
+  return [Lists.find(),
           Points.find(),
           Clusters.find(),
           Tags.find(),

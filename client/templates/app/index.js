@@ -1,6 +1,9 @@
 Template.index.helpers({
-  points: function(){
-    return Points.find({_id: {$in: Meteor.user().profile.points}});
+  lists: function(){
+    return Lists.find({author: Meteor.userId()});
+  },
+  listLink: function() {
+    return FlowRouter.path('list', {id: this._id});
   }
 });
 

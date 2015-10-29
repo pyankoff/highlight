@@ -24,7 +24,7 @@ Template.essayPage.onRendered(function() {
 Template.essayPage.helpers({
   essay: function(){
     var id = FlowRouter.getParam('id'),
-        essay = Essays.findOne(id);
+        essay = Lists.findOne(id);
 
     if (true) {
       var annotatedText = '';
@@ -76,7 +76,7 @@ Template.essayPage.events({
 
       if (point) {
         console.log(point._id);
-        Essays.update({_id: this._id}, {$addToSet:{
+        Lists.update({_id: this._id}, {$addToSet:{
           points: {
             id: point._id,
             text: text,

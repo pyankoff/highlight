@@ -1,25 +1,18 @@
 <template name="cart">
   {{#if Template.subscriptionsReady}}
-  {{#if cartNotEmpty}}
-    <div class="container">
-      <div class="point-list">
+    {{#if cartNotEmpty}}
+      <div class="container">
         {{#with cartPoints}}
           {{> pointList}}
         {{/with}}
+
+        <button type="submit" class="btn btn-success save-list">Save list</button>
       </div>
-      <form class="save-cluster form-inline">
-        <div class="form-group">
-          <label for="exampleInputName2">Save to collection</label>
-          <input name="text" type="text" class="form-control" placeholder="Enter collection name">
-        </div>
-        <button type="submit" class="btn btn-success">Save</button>
-      </form>
-    </div>
-  {{else}}
-    <div class="container">
-      <p class="text-center">Your cart is empty. Discover great things</p>
-    </div>
-  {{/if}}
+    {{else}}
+      <div class="container">
+        <p class="text-center">Your cart is empty. Discover great things</p>
+      </div>
+    {{/if}}
 
   {{/if}}
 </template>

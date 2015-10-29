@@ -1,6 +1,8 @@
 let startup = () => {
   _setBrowserPolicies();
   _addTwitterLogin();
+
+  Sortable.collections = 'points';
 };
 
 var _setBrowserPolicies = () => {};
