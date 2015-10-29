@@ -19,17 +19,19 @@ Template.pointPage.helpers({
     var id = FlowRouter.getParam('id');
     var targets = Points.findOne(id).targets;
 
-    var suggested = [];
-    for (var i = 0; i < targets.length; i++) {
-      suggested[targets[i].id] = targets[i].weight;
-    }
+    if (targets) {
+      var suggested = [];
+      for (var i = 0; i < targets.length; i++) {
+        suggested[targets[i].id] = targets[i].weight;
+      }
 
-    suggested = Points.find({"_id": {$in: _.keys(suggested)}}).map((point) => {
-      point.weight = suggested[point._id];
-      return point;
-    });
-    
-    return _.sortBy(suggested, 'weight').reverse()
+      suggested = Points.find({"_id": {$in: _.keys(suggested)}}).map((point) => {
+        point.weight = suggested[point._id];
+        return point;
+      });
+
+      return _.sortBy(suggested, 'weight').reverse()
+    }
   }
 });
 

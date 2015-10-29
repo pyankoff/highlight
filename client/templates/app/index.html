@@ -1,9 +1,12 @@
 <template name="index">
   {{#if Template.subscriptionsReady}}
-    {{#each lists}}
-      <div>
-        <a href="{{listLink}}">{{text}}</a>
-      </div>
-    {{/each}}
+    {{#autoForm collection="Points" id="pointForm"
+        type="method" meteormethod="addmethodname"}}
+        <fieldset>
+        {{> afFieldInput name='tags' type="selectize"
+            multiple=true}}
+        </fieldset>
+        <button type="submit" class="btn btn-success pull-right">Save</button>
+    {{/autoForm}}
   {{/if}}
 </template>

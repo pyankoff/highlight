@@ -20,16 +20,31 @@ Meteor.methods({
     }});
   },
   saveList: function(list) {
-    var points = [];
-    for (var i = 0; i < list.points.length; i++) {
-      points.push({
-        id: list.points[i]
-      });
-    }
+    var pointIds = list.points,
+        points = [];
 
+    if (!list.text) {
+      list.text = String(pointIds.length)+ ' points';
+    };
+
+    for (var i = 0; i < pointIds.length; i++) {
+      points.push({
+        id: pointIds[i]
+      });
+    };
     list.points = points;
-    
+
     var listId = Lists.insert(list);
+
+    for (var i = 0; i < pointIds.length; i++) {
+      if (i > 0) {
+        Edges.insert({
+          points: [pointIds[i-1], pointIds[i]],
+          author: Meteor.userId(),
+          list: listId
+        });
+      }
+    };
 
     Meteor.users.update({_id: Meteor.userId()}, {
       $set: {"profile.cart": []},

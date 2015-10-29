@@ -11,7 +11,7 @@ Template.pointInput.onCreated(function() {
       method: function (error, result) {
         if (error) {
           console.log(error);
-        }
+        };
         FlowRouter.go('point', {id: result});
       }
     }

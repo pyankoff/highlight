@@ -32,8 +32,6 @@ Template.cart.events({
         FlowRouter.go('list', {id: result});
       }
     });
-
-    e.target.reset();
   }
 });
 
