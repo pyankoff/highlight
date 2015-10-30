@@ -9,6 +9,7 @@ Template.pointList.onRendered(function () {
 
   var sortable = Sortable.create(pointList, {
     animation: 200,
+    handle: ".fa-bars",
     onSort: function (e) {
       var pointIds = Session.get('ids');
       pointIds.splice(e.newIndex, 0, pointIds.splice(e.oldIndex,1)[0]);

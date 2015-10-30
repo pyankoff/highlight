@@ -24,7 +24,7 @@ Meteor.methods({
     list.points = _processPointIds(pointIds);
 
     if (!list.text) {
-      list.text = String(pointIds.length)+ ' points';
+      list.text = String(pointIds.length)+ ' points ✎';
     };
 
     var listId = _processList(list);
@@ -34,14 +34,17 @@ Meteor.methods({
   saveListInput: function(points) {
     var pointIds = [];
     for (var i = 0; i < points.length; i++) {
-      var pointId = Points.insert({text: points[i]});
+      var pointId = Points.insert({
+        text: points[i],
+        author: Meteor.userId()
+      });
       pointIds.push({
         id: pointId
       });
     };
 
     var list = {
-      text: String(pointIds.length) + ' points',
+      text: String(pointIds.length) + ' points ✎',
       points: pointIds,
       author: Meteor.userId()
     };
@@ -54,22 +57,47 @@ Meteor.methods({
     Lists.update({_id: listId}, {$set:{
       points: _processPointIds(pointIds)
     }});
+  },
+  submitPoint: (point) => {
+    var id = Points.insert({
+      text: point.text,
+      author: Meteor.userId()
+    });
+
+    if (point.reply) {
+      Edges.insert({
+        points: [point.reply, id],
+        author: Meteor.userId(),
+        list: point.listId
+      });
+
+      var list = Lists.findOne({_id: point.listId});
+      var points = list.points;
+      points.splice(points.indexOf(point.reply)+1, 0, id);
+      console.log(points.indexOf(point.reply));
+      Lists.update({_id: point.listId}, {$set:{
+        points: points
+      }});
+    } else {
+      Lists.update({_id: point.listId}, {$addToSet:{
+        points: id
+      }});
+    }
+
+    return id;
   }
 });
 
 _processPointIds = function (pointIds) {
   var points = [];
   for (var i = 0; i < pointIds.length; i++) {
-    points.push({
-      id: pointIds[i]
-    });
+    points.push(pointIds[i]);
   };
   return points;
 }
 
 _processList = function (list) {
   var listId = Lists.insert(list);
-  console.log(list);
   for (var i = 0; i < list.points.length; i++) {
     if (i > 0) {
       Edges.insert({

@@ -15,5 +15,10 @@ Template.header.events({
         Bert.alert( 'Logged out!', 'success' );
       }
     });
+  },
+  'click .navbar-collapse.in': function(e) {
+    if(!$(e.target).hasClass('dropdown-toggle')) {
+        $('.navbar-collapse').collapse('hide');
+    }
   }
 });

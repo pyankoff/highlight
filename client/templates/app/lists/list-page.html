@@ -1,7 +1,18 @@
 <template name="listPage">
   {{#if Template.subscriptionsReady}}
+    <h3>{{> editableText context=list collection="lists" field="text"}}</h3>
     {{#with listPoints}}
       {{> pointList}}
     {{/with}}
+
+    <form class="point-input panel-footer">
+      <div class="input-group">
+        <input name="text" type="text" class="form-control" placeholder="What do you think?" />
+        <span class="input-group-btn">
+          <button class="btn btn-success submit-point">
+              Send</button>
+        </span>
+      </div>
+    </form>
   {{/if}}
 </template>

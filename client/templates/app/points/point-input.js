@@ -1,5 +1,4 @@
 
-
 Template.pointInput.onCreated(function() {
   var self = this;
   self.autorun(function() {

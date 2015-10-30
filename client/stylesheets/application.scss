@@ -96,7 +96,7 @@ a {
   border-bottom: 2px #ccc solid;
 }
 
-.related-point .point-item {
+.point-item {
   &:hover {
     cursor: pointer;
   }
@@ -106,7 +106,7 @@ a {
   & .fa {
     display:inline;
     padding-right: 10px;
-    margin-right: 40px;
+    margin-right: 30px;
     color: #999;
     cursor: pointer;
     & .count {
@@ -120,7 +120,7 @@ a {
 
 .save-list {
   margin-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   width: 100%;
 }
 
