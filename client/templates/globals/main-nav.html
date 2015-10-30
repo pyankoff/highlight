@@ -1,6 +1,5 @@
 <template name="mainNav">
   <ul class="nav navbar-nav">
-    <li class="{{currentRoute 'index'}}"><a href="{{pathFor 'index'}}">Home</a></li>
     <li class="{{currentRoute 'lists'}}"><a href="{{pathFor 'lists'}}">Lists</a></li>
   </ul>
   <ul class="nav navbar-nav navbar-right">
@@ -14,6 +13,13 @@
       <ul class="dropdown-menu" role="menu">
         <li class="logout"><a href="#">Logout</a></li>
       </ul>
+    </li>
+    <li>
+      <button class="btn btn-success navbar-btn new-list">
+        <i class="fa fa-list">
+          <span class="count">Add List</span>
+        </i>
+      </button>
     </li>
     <li>
       <button class="btn btn-warning navbar-btn new-point">

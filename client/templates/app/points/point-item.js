@@ -35,16 +35,5 @@ Template.pointItem.events({
   "click .fa-times": function(e){
     var id = FlowRouter.getParam('id');
     Meteor.call('removeEdge', [id, this._id]);
-  },
-  "click .point-item": function(e){
-    if (!$(e.target).hasClass('fa') &&
-        !$(e.target).hasClass('btn') &&
-        !$(e.target).hasClass('selectize-input') &&
-        !$(e.target).is('input')) {
-
-      e.stopImmediatePropagation();
-      Session.set('connectTo', undefined);
-      FlowRouter.go('point', {id: this._id});
-    }
   }
 });

@@ -1,0 +1,20 @@
+<template name="index">
+  <div id="search-box">
+    <div class="container">
+      {{> EasySearch.Input index=pointsIndex attributes=inputOptions}}
+    </div>
+  </div>
+
+  <div id="search-results">
+    {{#EasySearch.Each index=pointsIndex}}
+      {{> pointItem}}
+    {{/EasySearch.Each}}
+
+    {{> EasySearch.LoadMore index=pointsIndex}}
+
+    {{#EasySearch.IfNoResults index=pointsIndex}}
+      <div class="no-results">No results found!</div>
+    {{/EasySearch.IfNoResults}}
+  </div>
+
+</template>

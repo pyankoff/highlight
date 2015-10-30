@@ -36,6 +36,17 @@ Template.pointPage.helpers({
 });
 
 Template.pointPage.events({
+  "click .point-item": function(e){
+    if (!$(e.target).hasClass('fa') &&
+        !$(e.target).hasClass('btn') &&
+        !$(e.target).hasClass('selectize-input') &&
+        !$(e.target).is('input')) {
+
+      e.stopImmediatePropagation();
+      Session.set('connectTo', undefined);
+      FlowRouter.go('point', {id: this._id});
+    }
+  },
   "submit .point-input": function(e, template){
     e.preventDefault();
 
