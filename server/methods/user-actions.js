@@ -38,9 +38,7 @@ Meteor.methods({
         text: points[i],
         author: Meteor.userId()
       });
-      pointIds.push({
-        id: pointId
-      });
+      pointIds.push(pointId);
     };
 
     var list = {
