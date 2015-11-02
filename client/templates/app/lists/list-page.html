@@ -1,9 +1,14 @@
 <template name="listPage">
   {{#if Template.subscriptionsReady}}
-    <h3>{{> editableText context=list collection="lists" field="text"}}</h3>
-    {{#with listPoints}}
-      {{> pointList}}
-    {{/with}}
+    <div class="chat-header">
+      <h3>{{> editableText context=list collection="lists" field="text"}}</h3>
+    </div>
+
+    <div class="chat-content">
+      {{#with listPoints}}
+        {{> pointList}}
+      {{/with}}
+    </div>
 
     <form class="point-input panel-footer">
       <div class="input-group">

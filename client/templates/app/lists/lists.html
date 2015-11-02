@@ -1,8 +1,8 @@
 <template name="lists">
   {{#if Template.subscriptionsReady}}
     {{#each lists}}
-      <div>
-        <a href="{{listLink}}">{{text}}</a>
+      <div class="list-item">
+        <a href="{{listLink}}">{{text}} ({{pointCount}})</a>
       </div>
     {{/each}}
   {{/if}}

@@ -8,8 +8,8 @@ Template.pointItem.helpers({
   essayUrl: function () {
     return FlowRouter.path('essay', {id: this.source}, {point: this._id});
   },
-  owned: function () {
-    return _.contains(Meteor.user().profile.cart, this._id) ? "owned" : "";
+  selected: function () {
+    return _.contains(Meteor.user().profile.cart, this._id) ? "selected-item" : "";
   },
   favCountDisplay: function () {
     return this.favCount === 0 ? '' : this.favCount;
@@ -18,6 +18,14 @@ Template.pointItem.helpers({
     var replyId = Session.get('connectTo');
     return replyId && replyId == this._id;
   },
+  editableOptions: function() {
+    return {
+      collection: 'points',
+      field: 'text',
+      textarea: true,
+      eventType: 'dblclick'
+    }
+  }
 });
 
 Template.pointItem.events({
@@ -51,16 +59,5 @@ Template.pointItem.events({
   "click .fa-times": function(e){
     var id = FlowRouter.getParam('id');
     Meteor.call('removeEdge', [id, this._id]);
-  },
-  "click .point-item": function(e){
-    if (!$(e.target).hasClass('fa') &&
-        !$(e.target).hasClass('btn') &&
-        !$(e.target).hasClass('selectize-input') &&
-        !$(e.target).is('input')) {
-
-      e.stopImmediatePropagation();
-      Session.set('connectTo', undefined);
-      FlowRouter.go('point', {id: this._id});
-    }
   }
 });

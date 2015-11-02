@@ -5,8 +5,6 @@ Template.pointList.onRendered(function () {
     return point._id;
   });
 
-  Session.set('ids', pointIds);
-
   var sortable = Sortable.create(pointList, {
     animation: 200,
     handle: ".fa-bars",

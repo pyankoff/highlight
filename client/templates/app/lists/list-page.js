@@ -7,11 +7,12 @@ Template.listPage.helpers({
     var id = FlowRouter.getParam('id'),
         list = Lists.findOne(id);
     Session.set("listId", id);
-
+    Session.set('ids', list.points);
     var points = Points.find({_id: {$in: list.points}}).fetch();
     points = _.sortBy(points, function(doc) {
       return list.points.indexOf(doc._id)
     });
+
     return points;
   }
 });
@@ -42,18 +43,21 @@ Template.listPage.events({
         var place = 'div[class="'+ result +'"]'
 
         Meteor.setTimeout(function(){
-           $(place).delay(300).effect("highlight", {}, 2000);
+          $.scrollTo(place, 300, {offset: -50});
+          $(place).delay(300).effect("highlight", {}, 2000);
         }, 0);
       }
     });
-
+    
+    Session.set('reply', undefined);
     e.target.reset();
   }
 });
 
 Template.listPage.onCreated(function() {
   var self = this;
+  var id = FlowRouter.getParam('id');
   self.autorun(function() {
-    self.subscribe('all');
+    self.subscribe('singleList', id);
   });
 });

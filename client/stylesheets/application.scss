@@ -65,6 +65,9 @@ a {
   }
 }
 
+.list-item {
+  padding: 5px 0;
+}
 
 .save-point {
   position: absolute;
@@ -76,6 +79,23 @@ a {
   padding-bottom: 50px;
 }
 
+.chat-header {
+  background-color: #eee;
+  position: fixed;
+  left: 0px;
+  top: 50px;
+  right: 0px;
+  & h3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+.chat-content {
+  padding-top: 30px;
+  padding-bottom: 70px;
+}
+
 .point-input {
   position: fixed;
   left: 0px;
@@ -84,9 +104,13 @@ a {
 }
 
 .point-item {
-  padding-top: 20px;
-  border-bottom: 1px #ccc solid;
-  padding-bottom: 10px;
+  padding: 5px;
+  margin-top: 10px;
+  border: 1px #aaa solid;
+  border-radius: 10px;
+  & p {
+    margin-bottom: 0px;
+  }
 }
 
 .main-point .point-item {
@@ -100,6 +124,9 @@ a {
   &:hover {
     cursor: pointer;
   }
+  &.selected-item {
+    background-color: #eee;
+  }
 }
 
 .action-list {
@@ -112,9 +139,6 @@ a {
     & .count {
       margin-left: 10px;
     }
-  }
-  & .fa.owned {
-    color: #fb3;
   }
 }
 

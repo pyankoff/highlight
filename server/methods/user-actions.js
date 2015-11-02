@@ -5,12 +5,10 @@ Meteor.methods({
        Meteor.users.update({_id: userId}, {$addToSet:{
          "profile.cart": id
        }});
-       Points.update({_id: id}, {$inc: {favCount: 1}});
      } else {
        Meteor.users.update({_id: userId}, {$pull:{
          "profile.cart": id
        }});
-       Points.update({_id: id}, {$inc: {favCount: -1}});
      }
   },
   updateCart: function(cart) {
@@ -21,7 +19,7 @@ Meteor.methods({
   },
   saveList: function(list) {
     var pointIds = list.points;
-    list.points = _processPointIds(pointIds);
+    list.points = pointIds;
 
     if (!list.text) {
       list.text = String(pointIds.length)+ ' points ✎';
@@ -44,7 +42,8 @@ Meteor.methods({
     var list = {
       text: String(pointIds.length) + ' points ✎',
       points: pointIds,
-      author: Meteor.userId()
+      author: Meteor.userId(),
+      updatedAt: new Date()
     };
 
     var listId = _processList(list);
@@ -53,10 +52,11 @@ Meteor.methods({
   },
   updateList: function(listId, pointIds) {
     Lists.update({_id: listId}, {$set:{
-      points: _processPointIds(pointIds)
+      points: pointIds,
+      updatedAt: new Date()
     }});
   },
-  submitPoint: (point) => {
+  submitPoint: function(point) {
     var id = Points.insert({
       text: point.text,
       author: Meteor.userId()
@@ -72,29 +72,26 @@ Meteor.methods({
       var list = Lists.findOne({_id: point.listId});
       var points = list.points;
       points.splice(points.indexOf(point.reply)+1, 0, id);
-      console.log(points.indexOf(point.reply));
+
       Lists.update({_id: point.listId}, {$set:{
-        points: points
+        points: points,
+        updatedAt: new Date()
       }});
     } else {
       Lists.update({_id: point.listId}, {$addToSet:{
-        points: id
+        points: id,
+        updatedAt: new Date()
       }});
     }
+
+    _processHashtags(point.text, id);
 
     return id;
   }
 });
 
-_processPointIds = function (pointIds) {
-  var points = [];
-  for (var i = 0; i < pointIds.length; i++) {
-    points.push(pointIds[i]);
-  };
-  return points;
-}
-
-_processList = function (list) {
+var _processList = function (list) {
+  list.updatedAt = new Date();
   var listId = Lists.insert(list);
   for (var i = 0; i < list.points.length; i++) {
     if (i > 0) {
@@ -112,4 +109,17 @@ _processList = function (list) {
   });
 
   return listId;
+};
+
+var _processHashtags = function (pointText, pointId) {
+  var hashtags = pointText.match(/#\S+/g);
+
+  if (hashtags) {
+    for (var i = 0; i < hashtags.length; i++) {
+      Lists.update({text: hashtags[i]}, {$addToSet:{
+        points: pointId,
+        updatedAt: new Date()
+      }});
+    }
+  }
 }
