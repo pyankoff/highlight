@@ -86,9 +86,41 @@ a {
   top: 50px;
   right: 0px;
   & h3 {
+    display: inline-block;
     margin-top: 5px;
     margin-bottom: 5px;
   }
+  & .selected-count {
+    padding: 8px;
+    float: right;
+  }
+}
+
+.export-list {
+  position: fixed;
+  right: 10px;
+  left: auto;
+  top: 100px;
+  width: 300px;
+  background-color: white;
+  padding: 10px 10px 6px 10px;
+}
+
+.selectize-control {
+  display: inline;
+  margin-bottom: -3px;
+}
+
+.selectize-input {
+  width: 180px;
+}
+
+.selected-count {
+  cursor: pointer;
+}
+
+.export-list .btn {
+  float: right;
 }
 
 .chat-content {

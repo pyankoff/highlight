@@ -2,6 +2,7 @@
   {{#if Template.subscriptionsReady}}
     <div class="chat-header">
       <h3>{{> editableText context=list collection="lists" field="text"}}</h3>
+      <span class="selected-count">{{selectedCount}} <i class="fa fa-share-square-o"></i></span>
     </div>
 
     <div class="chat-content">
@@ -19,5 +20,7 @@
         </span>
       </div>
     </form>
+
+    {{> exportList}}
   {{/if}}
 </template>

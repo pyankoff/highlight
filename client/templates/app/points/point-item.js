@@ -9,7 +9,7 @@ Template.pointItem.helpers({
     return FlowRouter.path('essay', {id: this.source}, {point: this._id});
   },
   selected: function () {
-    return _.contains(Meteor.user().profile.cart, this._id) ? "selected-item" : "";
+    return _.contains(Session.get('selected'), this._id) ? "selected-item" : "";
   },
   favCountDisplay: function () {
     return this.favCount === 0 ? '' : this.favCount;
@@ -29,9 +29,6 @@ Template.pointItem.helpers({
 });
 
 Template.pointItem.events({
-  "click .fa-cart-plus": function(e){
-     Meteor.call("addToCart", this._id);
-  },
   "click .fa-reply": function(e){
     Session.set('reply', this._id);
     $('.point-input input').val('#' + this._id + ' ');

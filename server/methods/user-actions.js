@@ -18,11 +18,8 @@ Meteor.methods({
     }});
   },
   saveList: function(list) {
-    var pointIds = list.points;
-    list.points = pointIds;
-
     if (!list.text) {
-      list.text = String(pointIds.length)+ ' points ✎';
+      list.text = String(list.points.length)+ ' points ✎';
     };
 
     var listId = _processList(list);
