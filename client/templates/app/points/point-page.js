@@ -17,12 +17,13 @@ Template.pointPage.helpers({
   },
   suggested: function () {
     var id = FlowRouter.getParam('id');
-    var targets = Points.findOne(id).targets;
+    var edges = Edges.find({points: id}).fetch();
 
-    if (targets) {
+    if (edges) {
       var suggested = [];
-      for (var i = 0; i < targets.length; i++) {
-        suggested[targets[i].id] = targets[i].weight;
+      for (var i = 0; i < edges.length; i++) {
+        var relatedPoint = _.without(edges[i].points, id)[0];
+        suggested[relatedPoint] = edges[i].weight;
       }
 
       suggested = Points.find({"_id": {$in: _.keys(suggested)}}).map((point) => {
