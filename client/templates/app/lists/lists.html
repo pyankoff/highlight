@@ -1,9 +1,7 @@
 <template name="lists">
   {{#if Template.subscriptionsReady}}
     {{#each lists}}
-      <div class="list-item">
-        <a href="{{listLink}}">{{text}} ({{pointCount}})</a>
-      </div>
+      {{> listItem}}
     {{/each}}
   {{/if}}
 </template>

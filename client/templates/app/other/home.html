@@ -1,0 +1,17 @@
+<template name="home">
+  {{#if Template.subscriptionsReady}}
+    <div class="jumbotron text-center">
+      <h1>Encyclopad</h1>
+      <p>From notepad to encyclopedia</p>
+    </div>
+
+    <h2 class="text-center">How does it work?</h2>
+    {{#with intro}}
+      {{> pointList}}
+    {{/with}}
+    <h2 class="text-center">Recent lists</h2>
+    {{#each lists}}
+      {{> listItem}}
+    {{/each}}
+  {{/if}}
+</template>

@@ -1,0 +1,12 @@
+<template name="listItem">
+  <div class="list-item">
+    <h4><a href="{{listLink}}">{{text}}</a></h4>
+    {{#if canEdit}}
+      <i class="fa fa-times"></i>
+    {{/if}}
+    <div class="action-list">
+      <span class="fa">{{pointCount}} points</span>
+      <span class="fa">updated {{timeFromNow}}</span>
+    </div>
+  </div>
+</template>

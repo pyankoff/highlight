@@ -17,6 +17,7 @@ a {
 
 .main-content {
   margin-top: 60px;
+  padding-bottom: 30px;
 }
 
 .new-list {
@@ -186,4 +187,15 @@ a {
 
 .selectize-input > .item {
   display: block;
+}
+
+.list-item {
+  & > h4 {
+    display: inline;
+  }
+  & > .fa-times {
+    float: right;
+    cursor: pointer;
+    color: #ccc;
+  }
 }

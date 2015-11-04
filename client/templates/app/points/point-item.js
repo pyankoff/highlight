@@ -5,8 +5,10 @@ Template.pointItem.helpers({
   authorUrl: function () {
     return FlowRouter.path('author', {id: this.author});
   },
-  essayUrl: function () {
-    return FlowRouter.path('essay', {id: this.source}, {point: this._id});
+  canEdit: function() {
+    var listId = FlowRouter.getParam('id');
+    var list = Lists.findOne(listId);
+    return list && list.author === Meteor.userId();
   },
   selected: function () {
     return _.contains(Session.get('selected'), this._id) ? "selected-item" : "";
@@ -29,10 +31,14 @@ Template.pointItem.helpers({
 });
 
 Template.pointItem.events({
-  "click .fa-reply": function(e){
-    Session.set('reply', this._id);
-    $('.point-input input').val('#' + this._id + ' ');
-    $('.point-input input').focus();
+  "click .fa-reply": function(e) {
+    if (Meteor.user()) {
+      Session.set('reply', this._id);
+      $('.point-input input').val('#' + this._id + ' ');
+      $('.point-input input').focus();
+    } else {
+      FlowRouter.go('atSignIn');
+    }
   },
   "click .fa-link": function(e){
     if (Session.get('connectTo') != this._id) {
@@ -55,6 +61,19 @@ Template.pointItem.events({
   },
   "click .fa-times": function(e){
     var id = FlowRouter.getParam('id');
-    Meteor.call('removeEdge', [id, this._id]);
+    Meteor.call('removeFromList',
+                {listId: id, pointId: this._id},
+                function(error, result){
+      if(error){
+        console.log("error", error);
+      } else {
+        Bert.alert({
+          title: 'Removed point',
+          type: 'warning',
+          style: 'growl-top-right',
+          icon: 'fa-times'
+        });
+      }
+    });
   }
 });

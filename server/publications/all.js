@@ -1,9 +1,15 @@
-Meteor.publish("all", function(){
-  return [Lists.find(),
-          Points.find(),
-          Clusters.find(),
-          Tags.find(),
-          Edges.find()];
+Meteor.publish("chat", function(ids){
+  var points = _.clone(ids);
+  for (var i = 0; i < ids.length; i++) {
+    Edges.find({points: ids[i]}).forEach(function(edge) {
+      var connected = _.without(edge.points, ids[i])[0];
+      if (!_.contains(points, connected)) {
+        points.push(connected);
+      }
+    });
+  }
+  
+  return Points.find({_id: {$in: points}});
 });
 
 Meteor.publish("lists", function(){
@@ -22,5 +28,5 @@ Meteor.publishComposite('singleList', function(listId) {
         }
       }
     ]
-  }  
+  }
 });

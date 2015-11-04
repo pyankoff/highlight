@@ -1,14 +1,8 @@
-<template name="listPage">
+<template name="chat">
   {{#if Template.subscriptionsReady}}
-    <div class="chat-header">
-      <div class="container">
-        <h3>{{> editableText context=list collection="lists" field="text"}}</h3>
-        <span class="selected-count">{{selectedCount}} <i class="fa fa-share-square-o"></i></span>
-      </div>
-    </div>
-
+    Chat
     <div class="chat-content">
-      {{#with listPoints}}
+      {{#with chatPoints}}
         {{> pointList}}
       {{/with}}
     </div>
@@ -22,7 +16,5 @@
         </span>
       </div>
     </form>
-
-    {{> exportList}}
   {{/if}}
 </template>
