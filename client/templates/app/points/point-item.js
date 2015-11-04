@@ -31,15 +31,6 @@ Template.pointItem.helpers({
 });
 
 Template.pointItem.events({
-  "click .fa-reply": function(e) {
-    if (Meteor.user()) {
-      Session.set('reply', this._id);
-      $('.point-input input').val('#' + this._id + ' ');
-      $('.point-input input').focus();
-    } else {
-      FlowRouter.go('atSignIn');
-    }
-  },
   "click .fa-link": function(e){
     if (Session.get('connectTo') != this._id) {
       Session.set('connectTo', this._id);

@@ -18,10 +18,23 @@ Template.listPage.helpers({
   selectedCount: function() {
     var selected = Session.get('selected');
     return selected && selected.length ? selected.length : '';
+  },
+  chatUrl: function() {
+    var id = FlowRouter.getParam('id');
+    return FlowRouter.path('chat', {}, {anchor: id});
   }
 });
 
 Template.listPage.events({
+  "click .fa-reply": function(e) {
+    if (Meteor.user()) {
+      FlowRouter.go('chat', {}, {'anchor': this._id});
+      Session.set('replyTo', this._id);
+      e.stopImmediatePropagation();
+    } else {
+      FlowRouter.go('atSignIn');
+    }
+  },
   "click .point-item": function(e) {
     if (!$(e.target).hasClass('fa')) {
       var selected = Session.get('selected');
@@ -54,44 +67,11 @@ Template.listPage.events({
         style: 'growl-top-right',
         icon: 'fa-check'
       });
-      
+
       Session.set('selected', undefined);
     });
   },
-  "submit .point-input": function(e, template){
-    e.preventDefault();
 
-    var listId = FlowRouter.getParam('id');
-    var text = e.target.text.value;
-    var reply = Session.get('reply');
-
-    if (reply) {
-      text = text.substr(text.indexOf(' ')+1);
-    }
-
-    var point = {
-      text: text,
-      reply: reply,
-      listId: listId
-    };
-
-    Meteor.call("submitPoint", point, function(error, result){
-      if(error){
-        console.log("error", error);
-      }
-      if(result){
-        var place = 'div[class="'+ result +'"]'
-
-        Meteor.setTimeout(function(){
-          $.scrollTo(place, 300, {offset: -50});
-          $(place).delay(300).effect("highlight", {}, 2000);
-        }, 0);
-      }
-    });
-
-    Session.set('reply', undefined);
-    e.target.reset();
-  }
 });
 
 Template.listPage.onCreated(function() {

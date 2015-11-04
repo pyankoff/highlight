@@ -134,6 +134,9 @@ a {
   left: 0px;
   right: 0px;
   bottom: 0px;
+  & > .btn {
+    width: 100%;
+  }
 }
 
 .point-item {

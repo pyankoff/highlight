@@ -1,32 +1,27 @@
 Meteor.methods({
-  submitPoint: function(point) {
+  chatPoint: function(point) {
+    var userId = Meteor.userId();
     var id = Points.insert({
       text: point.text,
-      author: Meteor.userId()
+      author: userId,
+      createdAt: new Date()
     });
 
-    if (point.reply) {
-      var list = Lists.findOne({_id: point.listId});
-      var points = list.points;
-      points.splice(points.indexOf(point.reply)+1, 0, id);
+    if (point.replyTo) {
+      Edges.insert({
+        author: userId,
+        points: [point.replyTo, id]
+      });
+    };
 
-      Lists.update({_id: point.listId}, {$set:{
-        points: points,
-        updatedAt: new Date()
-      }});
-    } else {
-      Lists.update({_id: point.listId}, {$addToSet:{
-        points: id,
-        updatedAt: new Date()
-      }});
-    }
-
-    _processHashtags(point.text, id);
+    Edges.insert({
+      author: userId,
+      points: [point.anchor, id]
+    });
 
     return id;
   },
   exportPoints:function(fromList, toList, pointIds){
-    console.log(toList);
     Lists.update({_id: toList}, {$addToSet:{
       points: {$each: pointIds}
     }, $set: {
@@ -46,16 +41,3 @@ Meteor.methods({
     }
   }
 });
-
-var _processHashtags = function (pointText, pointId) {
-  var hashtags = pointText.match(/#\S+/g);
-
-  if (hashtags) {
-    for (var i = 0; i < hashtags.length; i++) {
-      Lists.update({text: hashtags[i]}, {$addToSet:{
-        points: pointId,
-        updatedAt: new Date()
-      }});
-    }
-  }
-}

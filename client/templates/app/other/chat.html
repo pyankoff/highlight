@@ -1,6 +1,11 @@
 <template name="chat">
   {{#if Template.subscriptionsReady}}
-    Chat
+    <div class="chat-header">
+      <div class="container">
+        <h3>Chat</h3>
+      </div>
+    </div>
+
     <div class="chat-content">
       {{#with chatPoints}}
         {{> pointList}}
