@@ -35,18 +35,6 @@ Template.listPage.events({
       FlowRouter.go('atSignIn');
     }
   },
-  "click .point-item": function(e) {
-    if (!$(e.target).hasClass('fa')) {
-      var selected = Session.get('selected');
-      selected = selected ? selected : [];
-      if (_.contains(selected, this._id)) {
-        selected.splice(selected.indexOf(this._id), 1);
-      } else {
-        selected.push(this._id);
-      };
-      Session.set('selected', selected);
-    }
-  },
   "click .selected-count": function(e) {
     var selected = Session.get('selected');
 
@@ -75,9 +63,12 @@ Template.listPage.events({
 });
 
 Template.listPage.onCreated(function() {
-  var self = this;
   var id = FlowRouter.getParam('id');
-  self.autorun(function() {
-    self.subscribe('singleList', id);
-  });
+  this.subscribe('singleList', id, {onReady: function() {
+    var list = Lists.findOne();
+    SEO.set({
+      title: list.text,
+      description: list.text + " - best ideas, thoughts, notes.",
+    });
+  }});
 });

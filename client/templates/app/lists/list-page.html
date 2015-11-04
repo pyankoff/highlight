@@ -11,11 +11,12 @@
       {{#with listPoints}}
         {{> pointList}}
       {{/with}}
+      <a href="{{chatUrl}}" class="btn btn-default go-chat">
+        Go to discussion
+      </a>
     </div>
 
-    <form class="point-input panel-footer">
-      <a href="{{chatUrl}}" class="btn btn-success">Discuss</a>
-    </form>
+    {{> chatInput}}
 
     {{> exportList}}
   {{/if}}

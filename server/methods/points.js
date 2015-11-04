@@ -35,9 +35,5 @@ Meteor.methods({
     Lists.update({_id: listId}, {$pull:{
       points: pointId
     }});
-
-    if (!Lists.findOne({points: pointId})) {
-      Points.remove({_id: pointId});
-    }
   }
 });

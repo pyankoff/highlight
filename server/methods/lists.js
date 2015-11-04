@@ -40,16 +40,6 @@ Meteor.methods({
     var list = Lists.findOne({_id: id});
 
     Lists.remove({_id: id});
-
-    var count = 0;
-    for (var i = 0; i < list.points.length; i++) {
-      var pointId = list.points[i];
-      if (!Lists.findOne({points: pointId})) {
-        Points.remove({_id: pointId});
-        count += 1;
-      }
-    };
-    console.log('Removed ' + count + ' points');
   }
 });
 

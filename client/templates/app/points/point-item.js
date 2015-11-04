@@ -9,28 +9,16 @@ Template.pointItem.helpers({
     var listId = FlowRouter.getParam('id');
     var list = Lists.findOne(listId);
     return list && list.author === Meteor.userId();
-  },
-  selected: function () {
-    return _.contains(Session.get('selected'), this._id) ? "selected-item" : "";
-  },
-  favCountDisplay: function () {
-    return this.favCount === 0 ? '' : this.favCount;
-  },
-  connectToThis: function() {
-    var replyId = Session.get('connectTo');
-    return replyId && replyId == this._id;
-  },
-  editableOptions: function() {
-    return {
-      collection: 'points',
-      field: 'text',
-      textarea: true,
-      eventType: 'dblclick'
-    }
   }
 });
 
 Template.pointItem.events({
+  "click .point-item": function(e) {
+    if (!$(e.target).hasClass('fa')) {
+      FlowRouter.go('chat', {}, {'anchor': this._id});
+      e.stopImmediatePropagation();
+    }
+  },
   "click .fa-link": function(e){
     if (Session.get('connectTo') != this._id) {
       Session.set('connectTo', this._id);

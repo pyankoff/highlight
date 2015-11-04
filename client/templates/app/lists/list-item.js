@@ -9,7 +9,7 @@ Template.listItem.helpers({
     return moment(this.updatedAt).fromNow();
   },
   canEdit: function () {
-    return this._id === Meteor.userId();
+    return this.author === Meteor.userId();
   }
 });
 

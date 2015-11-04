@@ -1,13 +1,12 @@
 <template name="pointItem">
   <div class="point-item {{selected}}">
     <div>
-      <p>{{> editableText options=editableOptions}}</p>
+      <p>{{text}}</p>
     </div>
 
     <div class="action-list">
-      <i class="fa fa-reply"></i>
-      <a href="{{pointUrl}}"><i class="fa fa-link"></i></a>
       {{#if canEdit}}
+        <i class="fa fa-edit editable-text-trigger"></i>
         <i class="fa fa-times"></i>
         <i class="fa fa-bars"></i>
       {{/if}}

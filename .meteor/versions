@@ -111,6 +111,7 @@ templating-tools@1.0.0
 themeteorchef:bert@2.1.0
 themeteorchef:jquery-validation@1.14.0
 tomwasd:flow-router-autoscroll@0.0.2
+tomwasd:flow-router-seo@0.0.3
 tracker@1.0.9
 twbs:bootstrap@3.3.5
 twitter@1.1.5
