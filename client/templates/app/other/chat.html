@@ -2,7 +2,9 @@
   {{#if Template.subscriptionsReady}}
     <div class="chat-header">
       <div class="container">
-        <h3>Chat</h3>
+        {{#with anchor}}
+          <h3><a href="{{url}}">{{text}}</a> - Channel</h3>
+        {{/with}}
       </div>
     </div>
 

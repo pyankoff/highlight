@@ -8,13 +8,6 @@ body {
   font-size: 18px;
 }
 
-a {
-  color: #555;
-  &:hover {
-    text-decoration: none;
-  }
-}
-
 .main-content {
   margin-top: 60px;
   padding-bottom: 30px;
@@ -162,6 +155,11 @@ a {
   }
   &.selected-item {
     background-color: #eee;
+  }
+  & > .fa-save {
+    float: right;
+    cursor: pointer;
+    color: #ccc;
   }
 }
 

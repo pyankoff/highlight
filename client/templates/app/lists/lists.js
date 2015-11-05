@@ -4,6 +4,18 @@ Template.lists.helpers({
   }
 });
 
+Template.lists.events({
+  "click .go-chat": function(e){
+     var id = Lists.insert({
+       text: 'New list',
+       author: Meteor.userId(),
+       points: [],
+       updatedAt: new Date()
+     });
+     FlowRouter.go('list', {id: id});
+  }
+});
+
 Template.lists.onCreated(function() {
   var self = this;
   self.autorun(function() {

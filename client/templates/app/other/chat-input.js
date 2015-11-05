@@ -5,14 +5,20 @@ Template.chatInput.events({
     var anchor = FlowRouter.getQueryParam('anchor');
     var text = e.target.text.value;
 
-    if (!anchor) {
-      anchor = FlowRouter.getParam('id');
-      FlowRouter.go('chat', {}, {anchor: anchor});
-    };
-
     var point = {
       text: text,
-      anchor: anchor
+      anchor: anchor,
+      toList: false
+    };
+
+    if (!anchor) {
+      point.anchor = FlowRouter.getParam('id');
+      var list = Lists.findOne(point.anchor);
+      if (list.author === Meteor.userId()) {
+        point.toList = true;
+      } else {
+        FlowRouter.go('chat', {}, {anchor: point.anchor});
+      }
     };
 
     Meteor.call("chatPoint", point, function(error, result){

@@ -9,6 +9,12 @@ Template.pointItem.helpers({
     var listId = FlowRouter.getParam('id');
     var list = Lists.findOne(listId);
     return list && list.author === Meteor.userId();
+  },
+  listOwner: function() {
+    var anchor = FlowRouter.getQueryParam('anchor');
+    var list = Lists.findOne(anchor);
+
+    return list && list.author === Meteor.userId();
   }
 });
 
@@ -51,6 +57,23 @@ Template.pointItem.events({
           type: 'warning',
           style: 'growl-top-right',
           icon: 'fa-times'
+        });
+      }
+    });
+  },
+  "click .fa-save": function(e){
+    var anchor = FlowRouter.getQueryParam('anchor');
+    Meteor.call('addToList',
+                {listId: anchor, pointId: this._id},
+                function(error, result){
+      if(error){
+        console.log("error", error);
+      } else {
+        Bert.alert({
+          title: 'Added point to your list',
+          type: 'success',
+          style: 'growl-top-right',
+          icon: 'fa-check'
         });
       }
     });

@@ -7,11 +7,10 @@ Meteor.methods({
       createdAt: new Date()
     });
 
-    if (point.replyTo) {
-      Edges.insert({
-        author: userId,
-        points: [point.replyTo, id]
-      });
+    if (point.toList) {
+      Lists.update({_id: point.anchor}, {$addToSet:{
+        points: id
+      }});
     };
 
     Edges.insert({
@@ -26,6 +25,14 @@ Meteor.methods({
       points: {$each: pointIds}
     }, $set: {
       updatedAt: new Date()
+    }});
+  },
+  addToList:function(ids){
+    var listId = ids.listId,
+        pointId = ids.pointId;
+
+    Lists.update({_id: listId}, {$addToSet:{
+      points: pointId
     }});
   },
   removeFromList:function(ids){

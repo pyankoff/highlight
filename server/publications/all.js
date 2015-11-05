@@ -5,28 +5,30 @@ Meteor.publishComposite('chat', function(anchor) {
         return Points.find(anchor);
       }
       if (Lists.findOne(anchor)) {
-        var list = Lists.findOne(anchor);
-        return Points.find({_id: {$in: list.points}});
+        return Lists.find(anchor);
       }
     },
     children: [
       {
-        find: function(point) {
-          return Edges.find({$or: [{
-              points: point._id
-            },
-            {
-              points: anchor
-            }]
-          });
+        find: function(item) {
+          if (Points.findOne(anchor)) {
+            return Edges.find({
+              points: item._id
+            });
+          }
+          if (Lists.findOne(anchor)) {
+            return Edges.find({$or: [{
+                points: item._id
+              }, {
+                points: {$in: item.points}
+              }]
+            });
+          }
         },
         children: [
           {
-            find: function(edge, point) {
-              var connected = _.without(edge.points, point._id);
-              connected = _.without(connected, anchor)[0];
-
-              return Points.find({_id: connected});
+            find: function(edge, item) {
+              return Points.find({_id: {$in: edge.points}});
             }
           }
         ]

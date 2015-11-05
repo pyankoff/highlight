@@ -1,6 +1,17 @@
 Template.chat.helpers({
   chatPoints: function(){
     return Points.find({}, {sort: {createdAt: 1}});
+  },
+  anchor: function(){
+    var anchorId = FlowRouter.getQueryParam('anchor');
+    var anchor = Lists.findOne(anchorId);
+    if (anchor) {
+      anchor.url = FlowRouter.path('list', {id: anchor._id});
+      return anchor;
+    } else {
+      anchor = Points.findOne(anchorId);
+      return anchor;
+    }
   }
 });
 

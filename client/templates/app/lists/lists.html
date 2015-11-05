@@ -1,5 +1,8 @@
 <template name="lists">
   {{#if Template.subscriptionsReady}}
+    <button class="btn btn-default go-chat">
+      New list
+    </button>
     {{#each lists}}
       {{> listItem}}
     {{/each}}

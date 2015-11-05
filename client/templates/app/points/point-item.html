@@ -1,12 +1,14 @@
 <template name="pointItem">
   <div class="point-item {{selected}}">
-    <div>
-      <p>{{text}}</p>
-    </div>
+    <span>{{text}}</span>
+
+    {{#if listOwner}}
+      <i class="fa fa-save"></i>
+    {{/if}}
 
     <div class="action-list">
       {{#if canEdit}}
-        <i class="fa fa-edit editable-text-trigger"></i>
+        <i class="fa fa-edit"></i>
         <i class="fa fa-times"></i>
         <i class="fa fa-bars"></i>
       {{/if}}
