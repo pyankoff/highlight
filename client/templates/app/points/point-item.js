@@ -10,11 +10,18 @@ Template.pointItem.helpers({
     var list = Lists.findOne(listId);
     return list && list.author === Meteor.userId();
   },
+  owned: function () {
+    return _.contains(Meteor.user().profile.points, this._id) ? "owned" : "";
+  },
+  favCountDisplay: function () {
+    return this.favCount === 0 ? '' : this.favCount;
+  },
   listOwner: function() {
     var anchor = FlowRouter.getQueryParam('anchor');
     var list = Lists.findOne(anchor);
 
-    return list && list.author === Meteor.userId();
+    return list && list.author === Meteor.userId() &&
+            !_.contains(list.points, this._id);
   }
 });
 
@@ -77,5 +84,27 @@ Template.pointItem.events({
         });
       }
     });
+  },
+  "click .fa-shopping-cart": function(e){
+    if (Meteor.user()) {
+      var userCart = Meteor.user().profile.cart;
+      Meteor.call('addToList',
+                  {listId: userCart, pointId: this._id},
+                  function(error, result){
+        if(error){
+          console.log("error", error);
+        } else {
+          Bert.alert({
+            title: 'Added point to your list',
+            type: 'success',
+            style: 'growl-top-right',
+            icon: 'fa-check'
+          });
+        }
+      });
+    } else {
+      FlowRouter.go('atSignIn');
+    }
+
   }
 });

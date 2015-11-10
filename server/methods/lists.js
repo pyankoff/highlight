@@ -30,11 +30,8 @@ Meteor.methods({
 
     return listId;
   },
-  updateList: function(listId, pointIds) {
-    Lists.update({_id: listId}, {$set:{
-      points: pointIds,
-      updatedAt: new Date()
-    }});
+  updateList: function(finder, modifier) {
+    Lists.update(finder, modifier);
   },
   deleteList:function(id){
     var list = Lists.findOne({_id: id});

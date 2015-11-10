@@ -1,3 +1,7 @@
+Template.chatInput.helpers({
+
+});
+
 Template.chatInput.events({
   "submit .point-input": function(e){
     e.preventDefault();

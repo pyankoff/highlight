@@ -5,7 +5,7 @@ Template.lists.helpers({
 });
 
 Template.lists.events({
-  "click .go-chat": function(e){
+  "click .new-chat": function(e){
      var id = Lists.insert({
        text: 'New list',
        author: Meteor.userId(),

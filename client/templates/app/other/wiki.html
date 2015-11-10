@@ -1,0 +1,8 @@
+<template name="wiki">
+  {{#if Template.subscriptionsReady}}
+    Wikipages: {{wikiCount}}
+    {{#with wiki}}
+      {{title}}
+    {{/with}}
+  {{/if}}
+</template>

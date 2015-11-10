@@ -5,12 +5,14 @@ Template.listPage.helpers({
   },
   listPoints: function(){
     var id = FlowRouter.getParam('id'),
-        list = Lists.findOne(id);
+        list = Lists.findOne(id),
+        pointIds = list.points.map(p => p.id);
     Session.set("listId", id);
-    Session.set('ids', list.points);
-    var points = Points.find({_id: {$in: list.points}}).fetch();
+    Session.set('ids', pointIds);
+    var points = Points.find({_id: {$in: pointIds}}).fetch();
+
     points = _.sortBy(points, function(doc) {
-      return list.points.indexOf(doc._id)
+      return pointIds.indexOf(doc._id)
     });
 
     return points;

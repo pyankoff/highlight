@@ -9,7 +9,10 @@ Meteor.methods({
 
     if (point.toList) {
       Lists.update({_id: point.anchor}, {$addToSet:{
-        points: id
+        points: {
+          id: id,
+          place: {x: 0.5, y: 0.5}
+        }
       }});
     };
 
@@ -33,6 +36,12 @@ Meteor.methods({
 
     Lists.update({_id: listId}, {$addToSet:{
       points: pointId
+    }, $set: {
+      updatedAt: new Date()
+    }});
+
+    Meteor.users.update({_id: Meteor.userId()}, {$addToSet:{
+      'profile.points': pointId
     }});
   },
   removeFromList:function(ids){

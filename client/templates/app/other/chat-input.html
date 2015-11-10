@@ -1,7 +1,9 @@
 <template name="chatInput">
   <form class="point-input panel-footer">
     <div class="input-group">
-      <input name="text" type="text" class="form-control" placeholder="What do you think?" />
+      <input name="text" type="text" class="form-control typeahead" placeholder="What do you think?"
+      autocomplete="off" spellcheck="off"
+      data-source="typePoints" data-select="selected"/>
       <span class="input-group-btn">
         <button class="btn btn-success submit-point">
             Send</button>

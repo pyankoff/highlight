@@ -9,11 +9,8 @@
 
     <div class="chat-content">
       {{#with listPoints}}
-        {{> pointList}}
+        {{> graph}}
       {{/with}}
-      <a href="{{chatUrl}}" class="btn btn-default go-chat">
-        Go to channel
-      </a>
     </div>
 
     {{> chatInput}}

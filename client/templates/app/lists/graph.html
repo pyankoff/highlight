@@ -1,0 +1,9 @@
+<template name="graph">
+  <div id="pointGraph">
+    {{#each this}}
+      <div class="graph-point {{_id}}">
+        {{> point}}
+      </div>
+    {{/each}}
+  </div>
+</template>

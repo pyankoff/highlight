@@ -38,7 +38,7 @@ Meteor.publishComposite('chat', function(anchor) {
 });
 
 Meteor.publish("lists", function(){
-  return Lists.find();
+  return Lists.find({}, {limit: 20});
 });
 
 Meteor.publishComposite('singleList', function(listId) {
@@ -49,9 +49,14 @@ Meteor.publishComposite('singleList', function(listId) {
     children: [
       {
         find: function(list) {
-          return Points.find({_id: {$in: list.points}});
+          var pointIds = list.points.map(p => p.id)
+          return Points.find({_id: {$in: pointIds}});
         }
       }
     ]
   }
+});
+
+Meteor.publish('all', function(){
+  return [Wiki.find({type: 'page'}, {limit: 3}), Points.find(), Lists.find(), Edges.find()];
 });

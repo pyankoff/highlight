@@ -9,8 +9,14 @@ body {
 }
 
 .main-content {
+  height: 90vh;
   margin-top: 60px;
   padding-bottom: 30px;
+}
+
+.chat-content {
+  height: 100%;
+  padding-top: 30px;
 }
 
 .new-list {
@@ -117,20 +123,8 @@ body {
   float: right;
 }
 
-.chat-content {
-  padding-top: 30px;
-  padding-bottom: 70px;
-}
 
-.point-input {
-  position: fixed;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  & > .btn {
-    width: 100%;
-  }
-}
+
 
 .point-item {
   padding: 5px;
@@ -170,6 +164,9 @@ body {
     margin-right: 30px;
     color: #999;
     cursor: pointer;
+    &.owned {
+      color: #a3ed09;
+    }
     & .count {
       margin-left: 10px;
     }
@@ -204,4 +201,38 @@ body {
 .go-chat {
   margin-top: 20px;
   width: 100%;
+}
+
+.new-chat {
+  width: 100%;
+}
+
+
+.point-input {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  & > .btn {
+    width: 100%;
+  }
+}
+
+.twitter-typeahead {
+  width: 100%;
+}
+
+#pointGraph {
+  height: 100%;
+}
+
+.graph-point {
+  display: inline-block;
+  background-color: #eee;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  overflow: scroll;
 }
