@@ -8,8 +8,11 @@ Template.chatInput.events({
 
     var anchor = FlowRouter.getQueryParam('anchor');
     var text = e.target.text.value;
+    var range = document.getSelection();
+    var keywords = Session.get('keywords');
 
     var point = {
+      name: keywords || text.split(' ').slice(0,2).join(' '),
       text: text,
       anchor: anchor,
       toList: false
@@ -40,5 +43,24 @@ Template.chatInput.events({
     });
 
     e.target.reset();
+    Session.set('keywords', '');
+  },
+  "click input": function(e) {
+    var s = window.getSelection();
+
+    s.modify("move", "backward", "word");
+    s.modify("extend", "forward", "word");
+
+    var word = s.toString();
+    if (word != '') {
+      var keywords = Session.get('keywords') || '';
+      if (!keywords.includes(word)) {
+        keywords = keywords + word + ' ';
+      } else {
+        keywords = keywords.replace(word, '');
+      };
+
+      Session.set('keywords', keywords);
+    }
   }
 });

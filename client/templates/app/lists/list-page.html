@@ -1,10 +1,12 @@
 <template name="listPage">
   {{#if Template.subscriptionsReady}}
     <div class="chat-header">
-      <div class="container">
-        <h3>{{> editableText context=list collection="lists" field="text"}}</h3>
-        <span class="selected-count">{{selectedCount}} <i class="fa fa-share-square-o"></i></span>
-      </div>
+      {{#with selected}}
+        <div class="editable-text-trigger">
+          {{> editableText textarea=true
+            collection=this.coll field="text" }}
+        </div>
+      {{/with}}
     </div>
 
     <div class="chat-content">

@@ -1,3 +1,11 @@
 <template name="point">
-  <span>{{text}}</span>
+  <div class="graph-point {{_id}}">
+    <div>
+      <span>{{text}}</span>
+    </div>
+    {{#if selected}}
+      <i class="fa fa-arrow-left"></i>
+      <i class="fa fa-times"></i>
+    {{/if}}
+  </div>
 </template>

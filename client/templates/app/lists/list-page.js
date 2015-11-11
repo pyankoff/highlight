@@ -1,4 +1,17 @@
 Template.listPage.helpers({
+  selected: function() {
+    var id = Session.get('selected');
+    if (id) {
+      var point = Points.findOne(id);
+      point.coll = 'points';
+      return point;
+    } else {
+      var id = FlowRouter.getParam('id');
+      var list = Lists.findOne(id);
+      list.coll = 'lists';
+      return list;
+    }
+  },
   list: function () {
     var id = FlowRouter.getParam('id');
     return Lists.findOne(id);
@@ -36,32 +49,7 @@ Template.listPage.events({
     } else {
       FlowRouter.go('atSignIn');
     }
-  },
-  "click .selected-count": function(e) {
-    var selected = Session.get('selected');
-
-    $('.export-list').toggle();
-    $('.selectize-input > input')[0].focus();
-  },
-  "click .export-list .btn": function(e) {
-    var fromList = FlowRouter.getParam('id'),
-        toList = $('#listSelect')[0].selectize.items[0],
-        selected = Session.get('selected');
-
-    Meteor.call('exportPoints', fromList, toList, selected, function(error, result) {
-      $('.export-list').hide();
-
-      Bert.alert({
-        title: 'Points sent to new list',
-        type: 'success',
-        style: 'growl-top-right',
-        icon: 'fa-check'
-      });
-
-      Session.set('selected', undefined);
-    });
-  },
-
+  }
 });
 
 Template.listPage.onCreated(function() {

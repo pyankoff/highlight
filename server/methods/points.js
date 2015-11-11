@@ -2,6 +2,7 @@ Meteor.methods({
   chatPoint: function(point) {
     var userId = Meteor.userId();
     var id = Points.insert({
+      name: point.name,
       text: point.text,
       author: userId,
       createdAt: new Date()
@@ -49,7 +50,7 @@ Meteor.methods({
         pointId = ids.pointId;
 
     Lists.update({_id: listId}, {$pull:{
-      points: pointId
+        points: {id: pointId}
     }});
   }
 });
