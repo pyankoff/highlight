@@ -8,7 +8,7 @@ body {
   font-size: 18px;
 }
 
-.main-content {
+.main-window {
   height: 90vh;
   margin-top: 60px;
   padding-bottom: 30px;
@@ -203,17 +203,6 @@ body {
 
 .new-chat {
   width: 100%;
-}
-
-
-.point-input {
-  position: fixed;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  & > .btn {
-    width: 100%;
-  }
 }
 
 .twitter-typeahead {

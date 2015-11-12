@@ -57,6 +57,14 @@ Meteor.publishComposite('singleList', function(listId) {
   }
 });
 
+Meteor.publish('recipe', function(recipe){
+  var regex = new RegExp(recipe);
+
+  return Points.find({
+    text: {$regex: regex, $options: '-i'}
+  }, {sort: {updatedAt: -1}, limit: 20});
+});
+
 Meteor.publish('all', function(){
   return [Wiki.find({type: 'page'}, {limit: 3}), Points.find(), Lists.find(), Edges.find()];
 });

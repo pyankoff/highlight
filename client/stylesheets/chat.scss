@@ -1,0 +1,102 @@
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+.side-nav {
+  background-color: #044974;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 260px;
+
+  padding-top: 50px;
+  color: white;
+}
+
+.main-content {
+  position: fixed;
+	top: 0;
+	bottom: 0;
+  left: 260px;
+	right: 0;
+	height: auto;
+  padding: 0;
+
+  header {
+    background-color: #eee;
+  	position: absolute;
+  	padding: 10px;
+  	border-bottom: 1px solid;
+  	z-index: 100;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+
+    h2 {
+      margin-top: 10px;
+    }
+  }
+
+  .points-box {
+    width: 100%;
+    height: calc(100% - 120px);
+    margin-top: 60px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  footer {
+    background-color: #eee;
+    position: absolute;
+    padding: 8px 20px 0 20px;
+    border-top: 1px solid;
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    min-height: 60px;
+
+    .input-wrapper {
+      padding: 6px;
+
+      textarea {
+        display: block;
+        padding: 6px 8px;
+        padding-right: 38px;
+        overflow-y: auto;
+        resize: none;
+        border: 1px solid #E7E7E7;
+        border-radius: 5px;
+        max-height: 200px;
+        width: 100%;
+        font-size: 12px;
+        -webkit-appearance: none;
+        height: 28px;
+        line-height: normal;
+        background-color: #fff;
+        position: relative;
+        outline: none;
+      }
+    }
+  }
+}
+
+
+/* Overwrite the default to keep the scrollbar always visible */
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}

@@ -1,0 +1,29 @@
+<template name="main">
+  <div class="container-fluid">
+    <div class="side-nav">
+      <ul>
+        <li>#general</li>
+        <li>#tech and econ</li>
+        <li>#bitcoin - price</li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <header>
+        <span>Recipe: </span>
+        <input type="text" class="recipe-input" value="">
+        <span>Tags: </span>
+        <input type="text" class="tags-input" value="">
+      </header>
+
+      <div class="points-box">
+        {{#with points}}
+          {{> pointList}}
+        {{/with}}
+      </div>
+
+      <footer>
+        {{> chatInput}}
+      </footer>
+    </div>
+  </div>
+</template>
