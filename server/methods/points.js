@@ -14,6 +14,8 @@ Meteor.methods({
           id: id,
           place: {x: 0.5, y: 0.5}
         }
+      }, $set: {
+        updatedAt: new Date()
       }});
     };
 
@@ -24,12 +26,25 @@ Meteor.methods({
 
     return id;
   },
-  exportPoints:function(fromList, toList, pointIds){
-    Lists.update({_id: toList}, {$addToSet:{
-      points: {$each: pointIds}
-    }, $set: {
+  exportPoints:function(fromList, pointIds){
+    var list = Lists.findOne(fromList);
+    var newPoints = _.filter(list.points, (x) => {
+      return _.contains(pointIds, x.id);
+    });
+    var oldPoints = _.difference(list.points, newPoints);
+
+    var id = Lists.insert({
+      text: 'New list',
+      author: Meteor.userId(),
+      points: newPoints,
       updatedAt: new Date()
+    });
+
+    Lists.update({_id: fromList}, {$set: {
+      points: oldPoints
     }});
+
+    return id;
   },
   addToList:function(ids){
     var listId = ids.listId,

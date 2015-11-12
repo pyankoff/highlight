@@ -1,16 +1,18 @@
 Template.listPage.helpers({
-  selected: function() {
+  item: function() {
+    var item;
     var id = Session.get('selected');
+
     if (id) {
-      var point = Points.findOne(id);
-      point.coll = 'points';
-      return point;
+      item = Points.findOne(id);
+      item.coll = 'points';
     } else {
       var id = FlowRouter.getParam('id');
-      var list = Lists.findOne(id);
-      list.coll = 'lists';
-      return list;
+      item = Lists.findOne(id);
+      item.coll = 'lists';
     }
+
+    return item;
   },
   list: function () {
     var id = FlowRouter.getParam('id');

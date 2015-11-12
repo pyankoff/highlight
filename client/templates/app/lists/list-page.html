@@ -1,10 +1,11 @@
 <template name="listPage">
   {{#if Template.subscriptionsReady}}
     <div class="chat-header">
-      {{#with selected}}
+      {{#with item}}
         <div class="editable-text-trigger">
-          {{> editableText textarea=true
-            collection=this.coll field="text" }}
+          {{> editableText field="text"
+              textarea=true collection=this.coll
+             }}
         </div>
       {{/with}}
     </div>

@@ -1,1 +1,3 @@
-Meteor.startup( () => {} );
+Meteor.startup( () => {
+
+} );

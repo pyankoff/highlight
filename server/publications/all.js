@@ -38,7 +38,7 @@ Meteor.publishComposite('chat', function(anchor) {
 });
 
 Meteor.publish("lists", function(){
-  return Lists.find({}, {limit: 20});
+  return Lists.find({}, {limit: 20, sort: {updatedAt: -1}});
 });
 
 Meteor.publishComposite('singleList', function(listId) {

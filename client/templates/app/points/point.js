@@ -1,17 +1,28 @@
 Template.point.helpers({
   selected: function(){
     return this._id == Session.get('selected');
+  },
+  pointName: function(){
+    var name = this.text.split('#')[1];
+    if (!name) {
+      name = this.text.substring(0, 20) +
+              (this.text.substring(21) && '...');
+    }
+    return name;
   }
 });
 
 Template.point.events({
-  "click .graph-point": function(e){
+  "mousedown .graph-point": function(e){
     Session.set('selected', this._id);
 
     var maxZ = Session.get('maxZ') + 1;
     $('.'+this._id).css('z-index', maxZ);
     Session.set('maxZ', maxZ);
 
+    e.stopImmediatePropagation();
+  },
+  "click .graph-point": function(e){
     e.stopImmediatePropagation();
   },
   "click .fa-times": function(e){
@@ -30,5 +41,6 @@ Template.point.events({
         });
       }
     });
+    Session.set('selected', undefined);
   }
 });

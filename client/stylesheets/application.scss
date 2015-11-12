@@ -222,12 +222,17 @@ body {
 
 #pointGraph {
   height: 100%;
+
+  -webkit-user-select: none;
+     -moz-user-select: -moz-none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .graph-point {
   display: inline-block;
   & > div {
-    text-align: center;
+    display: table;
     background-color: #eee;
     width: 100px;
     height: 100px;
@@ -235,6 +240,11 @@ body {
     border-radius: 5px;
     border: 1px solid #333;
     overflow: scroll;
+    & > span {
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+    }
   }
   & > .fa {
     color: #ddd;
